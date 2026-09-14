@@ -1,4 +1,4 @@
-name: Application CI-CD Pipeline
+name: CI-CD Pipeline Task 1
 on:
   push:
     branches:

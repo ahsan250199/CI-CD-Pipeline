@@ -1,4 +1,4 @@
-name: Multi-Tenant Deployment Pipeline
+name: CI-CD Pipeline Task 2
 on:
   push:
     branches:

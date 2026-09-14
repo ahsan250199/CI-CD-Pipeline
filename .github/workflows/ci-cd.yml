@@ -59,7 +59,7 @@ jobs:
 
   Rolling-Back:
     runs-on: macos-latest
-    needs: Deploy-Application
+    needs: Produce-Artifacts
     if: failure()
     steps:
       - name: Print Start Message

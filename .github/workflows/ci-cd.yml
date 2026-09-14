@@ -1,0 +1,68 @@
+name: Application CI-CD Pipeline
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Starting-Point:
+    runs-on: macos-latest
+    steps:
+      - name: Print Start Message
+        run: echo "Pipeline started"
+      - name: Ending Message
+        run: echo "Starting point completed successfully"
+
+  Stage-Component-A:
+    runs-on: macos-latest
+    needs: Starting-Point
+    steps:
+      - name: Print Start Message
+        run: echo "Running Stage Component A"
+      - name: Ending Message
+        run: echo "Stage Component A completed successfully"
+
+  Stage-Component-B:
+    runs-on: macos-latest
+    needs: Starting-Point
+    steps:
+      - name: Print Start Message
+        run: echo "Running Stage Component B"
+      - name: Ending Message
+        run: echo "Stage Component B completed successfully"
+
+  Stage-Component-C:
+    runs-on: macos-latest
+    needs: Starting-Point
+    steps:
+      - name: Print Start Message
+        run: echo "Running Stage Component C"
+      - name: Ending Message
+        run: echo "Stage Component C completed successfully"
+
+  Produce-Artifacts:
+    runs-on: macos-latest
+    needs: [Stage-Component-A, Stage-Component-B, Stage-Component-C]
+    steps:
+      - name: Print Start Message
+        run: echo "Producing artifacts"
+      - name: Ending Message
+        run: echo "Artifacts produced successfully"
+
+  Deploy-Application:
+    runs-on: macos-latest
+    needs: Produce-Artifacts
+    steps:
+      - name: Print Start Message
+        run: echo "Deploying application"
+      - name: Ending Message
+        run: echo "Application deployed successfully"
+
+  Rolling-Back:
+    runs-on: macos-latest
+    needs: Deploy-Application
+    if: failure()
+    steps:
+      - name: Print Start Message
+        run: echo "Deployment failed, initiating rollback"
+      - name: Ending Message
+        run: echo "Rollback completed"

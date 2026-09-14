@@ -34,10 +34,17 @@ jobs:
     steps:
       - name: Print Start Message
         run: echo "Deploying to DEV - Tenant 1"
-      - name: IB Planning Deployment
-        run: echo "Running IB Planning Deployment for DEV Tenant 1"
       - name: Ending Message
         run: echo "Deploy to DEV Tenant 1 completed successfully"
+
+  IB-Planning-Deployment:
+    runs-on: macos-latest
+    needs: Deploy-to-DEV-Tenant1
+    steps:
+      - name: Print Start Message
+        run: echo "Running IB Planning Deployment for DEV Tenant 1"
+      - name: Ending Message
+        run: echo "Deploy to IB Planning Deployment completed successfully"    
 
   Deploy-to-QA-Tenant1:
     runs-on: macos-latest

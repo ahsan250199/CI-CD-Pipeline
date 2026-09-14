@@ -1,0 +1,84 @@
+name: Multi-Tenant Deployment Pipeline
+on:
+  push:
+    branches:
+      - main
+jobs:
+  UI-Build:
+    runs-on: macos-latest
+    steps:
+      - name: Print Start Message
+        run: echo "Running UI Build"
+      - name: Ending Message
+        run: echo "UI Build completed successfully"
+
+  Backend-Build:
+    runs-on: macos-latest
+    steps:
+      - name: Print Start Message
+        run: echo "Running Backend Build"
+      - name: Ending Message
+        run: echo "Backend Build completed successfully"
+
+  Engine-Build:
+    runs-on: macos-latest
+    steps:
+      - name: Print Start Message
+        run: echo "Running Engine Build"
+      - name: Ending Message
+        run: echo "Engine Build completed successfully"
+
+  Deploy-to-DEV-Tenant1:
+    runs-on: macos-latest
+    needs: [UI-Build, Backend-Build, Engine-Build]
+    steps:
+      - name: Print Start Message
+        run: echo "Deploying to DEV - Tenant 1"
+      - name: IB Planning Deployment
+        run: echo "Running IB Planning Deployment for DEV Tenant 1"
+      - name: Ending Message
+        run: echo "Deploy to DEV Tenant 1 completed successfully"
+
+  Deploy-to-QA-Tenant1:
+    runs-on: macos-latest
+    needs: Deploy-to-DEV-Tenant1
+    steps:
+      - name: Print Start Message
+        run: echo "Deploying to QA - Tenant 1"
+      - name: IB Planning Deployment
+        run: echo "Running IB Planning Deployment for QA Tenant 1"
+      - name: Ending Message
+        run: echo "Deploy to QA Tenant 1 completed successfully"
+
+  Deploy-to-Production-Tenant1:
+    runs-on: macos-latest
+    needs: Deploy-to-QA-Tenant1
+    steps:
+      - name: Print Start Message
+        run: echo "Deploying to Production - Tenant 1"
+      - name: IB Planning Deployment
+        run: echo "Running IB Planning Deployment for Production Tenant 1"
+      - name: Ending Message
+        run: echo "Deploy to Production Tenant 1 completed successfully"
+
+  Deploy-to-DEV-Tenant2:
+    runs-on: macos-latest
+    needs: [UI-Build, Backend-Build, Engine-Build]
+    steps:
+      - name: Print Start Message
+        run: echo "Deploying to DEV - Tenant 2"
+      - name: IB Planning Deployment
+        run: echo "Running IB Planning Deployment for DEV Tenant 2"
+      - name: Ending Message
+        run: echo "Deploy to DEV Tenant 2 completed successfully"
+
+  Deploy-to-QA-Tenant2:
+    runs-on: macos-latest
+    needs: Deploy-to-DEV-Tenant2
+    steps:
+      - name: Print Start Message
+        run: echo "Deploying to QA - Tenant 2"
+      - name: IB Planning Deployment
+        run: echo "Running IB Planning Deployment for QA Tenant 2"
+      - name: Ending Message
+        run: echo "Deploy to QA Tenant 2 completed successfully"
